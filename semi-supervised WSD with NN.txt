@@ -1,2 +1,45 @@
 Summary:
-	#
+	- Recently using word vectors extracted from a NN language model as features in WSD, but average/concatenation of word vectors for word in text loses sequential and syntactic 		information of text.
+	
+	- This paper used LSTM(Long Short-Term Memory), which is a sequence learning neural net, on WSD. This better capture sequential and syntactic patterns of text.
+	- Employ LSTM on semi-supervised label propagation classifier
+
+Two novel WSD algorithm:
+	1. Long Short Term Memory which consider word order when classifying, perform better than bag of words model.
+	2. A semi-supervised algorithm uses label propagation to label unlabeled setences based on their similarity to labeled ones. Better for estimate distribution of wrod senses.
+
+Related Work:
+	- Context embeddings: 
+		A window of text surrounding focus word w, whose label either known or to be determined. An embedding for the context is computed as concatenation or weighted sum of embeddings of of other words.
+	- Sense embeddings:
+		Embeddings computed for each word sense in the word sense inventory(WordNet). We can derive equation that relateing embeddings for word sense with embeddings for undisambiguated words.The equations are solved to compute the sense embeddings. E.g. weighted sums of embeddings of words in WordNet gloss for each sense. 
+		These are used for bootstrapping and then refined by Neural Network trained on this bootstrap data.
+	- Embedding as SVM features:
+		Context embeddings are computed by combining context embeddings with sense embeddings as feature.
+	- Nearest neighbor classifier:
+		Classification by finding word sense whose sense embedding is closest inn cosine similarity.
+	- Retraining embeddings:
+		A feedfoward neural network used to jointly perform WSD and adjust embeddings.
+
+Baseline classifier: 
+	1000-dimensional embeddings traied on 100 billion word news corpus using Word2Vec. This consists of the most frequent 1 million words whithout normalization. Sense embeddings are computed by averaging context embeddings of sentences thich have been labeled with that sense. To classify a word in a context, assign the word sense with maximal cosine similarity with eht embedding of the context.
+
+Semi-supervised learning: 
+	Bootstraping was used to learn a WSD classifier. A classifier was learned from small set of labeled examples. The labeled set then extend with those sentences from unlabele corpus which the classifier could label with high confidence. The classifier then retrained untill convergenced.
+
+Label propagation algorithm: 
+	This can achieve better perormance since it assigns labels to optimize a global objective, whereas bootstrapping propagates labels based on local similarity of examples.
+
+*Supervised WSD with LSTM:
+	Train a LSTM language model to predict a helo-out word in a sentence. First, replace held-out word with symbol $, then consuming remaining words in the sentence, project the h dimensional hidden layer to a p dimensional context layer, and predict the held out word with softmax. The LSTM has 2048 hidden units, 512 dimensional context layer and 512 dimensional word embeddings. The LSTM was trained on a news corpus of about 100 billion tokens with vocabulary of 1 million words.
+	The difference of this LSTM is the prediction of held out word with surrounding context a large amount of unlabeled text as training data. The model is generally applicable to any word and achieves high perormance on all-words WSD tasks.
+	
+	How this works:
+		First, compute similarity betwo context by overlap between their "bags" of predicted words. This bag predictions is just a approximation to internal state of LSTM when predicting the held out word. The LSTM's context layer then computes the context representation(vector) from the bag predictions. The supervised WSD algorithms classify a word in context by finding the sense vector has maximum cosine similarity to the context vector. The sense vector is computed by averaging context vectors of all training sentences of the same sense. 
+	
+*Semi-supervised WSD:
+	
+	
+	
+	
+	
