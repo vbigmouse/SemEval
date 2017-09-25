@@ -28,18 +28,55 @@ Semi-supervised learning:
 	Bootstraping was used to learn a WSD classifier. A classifier was learned from small set of labeled examples. The labeled set then extend with those sentences from unlabele corpus which the classifier could label with high confidence. The classifier then retrained untill convergenced.
 
 Label propagation algorithm: 
-	This can achieve better perormance since it assigns labels to optimize a global objective, whereas bootstrapping propagates labels based on local similarity of examples.
+	This can achieve better performance since it assigns labels to optimize a global objective, whereas bootstrapping propagates labels based on local similarity of examples.
 
 *Supervised WSD with LSTM:
 	Train a LSTM language model to predict a helo-out word in a sentence. First, replace held-out word with symbol $, then consuming remaining words in the sentence, project the h dimensional hidden layer to a p dimensional context layer, and predict the held out word with softmax. The LSTM has 2048 hidden units, 512 dimensional context layer and 512 dimensional word embeddings. The LSTM was trained on a news corpus of about 100 billion tokens with vocabulary of 1 million words.
-	The difference of this LSTM is the prediction of held out word with surrounding context a large amount of unlabeled text as training data. The model is generally applicable to any word and achieves high perormance on all-words WSD tasks.
+	The difference of this LSTM is the prediction of held out word with surrounding context a large amount of unlabeled text as training data. The model is generally applicable to any word and achieves high performance on all-words WSD tasks.
 	
 	How this works:
-		First, compute similarity betwo context by overlap between their "bags" of predicted words. This bag predictions is just a approximation to internal state of LSTM when predicting the held out word. The LSTM's context layer then computes the context representation(vector) from the bag predictions. The supervised WSD algorithms classify a word in context by finding the sense vector has maximum cosine similarity to the context vector. The sense vector is computed by averaging context vectors of all training sentences of the same sense. 
+		First, compute similarity betwo context by overlap between their "bags" of predicted words. This bag predictions is just a approximation to internal state of LSTM when predicting the held out word. The LSTM's context layer then computes the context representation(vector) from the bag predictions. The supervised WSD algorithms classify a word in context by finding the sense vector has maximum cosine similarity to the context vector.(This step is improved by using LP instead using NearestNeighbor, which is  described below) The sense vector is computed by averaging context vectors of all training sentences of the same sense. 
 	
 *Semi-supervised WSD:
+	The non-parametric nearest neighbor algorithm has two drawbacks:
+	1. It assumes a spherical shape for each sense cluster, unable to accurately model the boundaries given limited number of examples. 
+	2. It has no training data for the sense prior, which omitting a powerful signal.
+	To overcome these drawbacks, use semi-supervised method which augments the labeled example sentences with a large number unlabeled sentences.Se nse labels are then propagated from the labeled to the unlabeled sentences. Adding a large number of unlabeled sentences allows the decision boundary between different senses to be better approximated.
 	
+	A label-propagation graph consists of 
+		a. vertices with number of labeled seed nodes and 
+		b. undirected weighted edges.
 	
+	Label propagation(LP) iteratively computes a distribution of labels on the graph's vertices to minimize a weighted combination of:
+		- The discrepancy between seed labels and their computed labels distributions.
+		- The disagreement between the label distributions of connected vertices
+		- A regularization term which penalizes distributions which differ from the prior.
+	
+	Construct a graph for each lemma 
+		- labeled vertices for the labeled example sentences.
+		- unlabeled vertices for sentences containing the lemma drawn from some addition corpus.
+	Vertices for sufficiently similar sentences are connected by an edge whose weight is the cosine similarity between the respective context vectors using LSTM language model.
+	In order to classify an occurrence of the lemma, an additional vertex for the new sentence is created and run LP to propagate the sens labels from the seed vertices to the unlabeled vertices.
+
+Experiments:
+	1.
+	Evaluated LSTM algorithm with and without label propagation on standard SemEval all-words sask usiing WordNet as inventory.
+	Compare LSTM with two algorithms:
+		- Most frequent sense: Compute the sense frequency from a labeled corpus and label word tiwh the most frequent sense.
+		- Word2Vec: A nearest neighbor classifier with Word2Vec word embedding.
+	
+	2.
+	Evaluated semi-supervised WSD classifier and compared to Word2Vec LP
+
+Conclusion:
+	This paper presented two WSD algorithms combine
+	1. LSTM neural network language models trained on a large unlabeled text corpus, with
+	2. labeled data in the form of example sentences and optionally
+	3. unlabeled data in the form of additional sentence.
+	
+	Using LSM model gave better performance than one based on Word2Vec embeddings. 
+	The best performance was achieved by semi-supervised WSD algorithm which builds a graph containing labeled example sentences augments with a large number of unlabeled sentences from the web, and classifies by propagating sense labels through this graph.
+
 	
 	
 	
