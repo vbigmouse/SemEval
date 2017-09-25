@@ -1,0 +1,40 @@
+Summary:
+	This paper presents a graph-based algorithm for sequence data labeling using random walks on graphs encoding label dependencies.
+	It is illustrated and tested in the context of an unsupervised WSD problem and shown better performance than individual label assignment measured on standard sense-annotated data sets.
+	
+Intro:
+	Many NLP tasks consist of labeling sequences of words. Typical labeling algorithms determined each words' correct label individually using a learning process, which independent of the labels assigned to other words. Such algorithms limits performance when dependencies across labels corresponding to the words in sequence can influence the selection of sets of labels.
+	
+This paper introduce a graph-based sequence data labeling algorithm well suited for natural language anotation tasks. The algorithm simulataneously annotates all words in a sequence by exploiting relations identified among word labels, using random walks on graphs encoding label dependencies.
+The random walks are modeled through iterative graph-based algorithms applied on the graph associated with given sequence of words, resulting in a stationary distribution over label probailities. These probabilities are then used to simultaneously select the most probable set of labels for the input words.
+
+The annotation method applied on an unsupervised WSD problem result an error reduction of 10.7%.
+
+Iterative Graphical Algorithm for sequence data labeling:
+	Given sequence of words W, each with labels L, define a label graph such that there is a vertex V for every possible label. Dependencies between pairs of labels are represented as directed/indirected edges E, defined over sets {V x V}. Such label dependencies can be learned from annotated data or derived by other means. Note that not all label pairs can be related.
+	
+	The likelilhood of each label can be recursively determined using an iterative graph-based ranking algorithm, which identifies the importance of each label (vertex) in the graph. The iterative algorithm is modeling a random walk, leading to a stationary distribution over label probabilities, represented as scores attached to vertices. These scores are used to identify the most probable label for each word, resulting in the annotation of all the words in the input sequence.
+	
+	This algorithm draw global information recursively from the entire graph rather than local vertex-specific information.
+	
+Graph-based Ranking:
+	"Voting": vertex links to other vertex is just like vote for that vertex. The higher vote, the higher importance that vertex is. Also the importance of the vertex casting determined how importance itself is. 
+	
+	Using "PageRank": The PageRank score associate the vertex is defined using a recursive function that integrates the scores of the set point to this vertex("predecessors").
+	This vertex scoring scheme is based on a random walk model, the decision on what edge to follow is solely based on the vertex ther walker located. Under certain condition, this model converges to stationary distribution of probabilities.
+	The stationary probability associated with a vertex in graph represent the probability of finding the walker at that vertex during the random walk, thus represents the importance of the vertex within the graph. This is used to decide the most probable set of labels for the given sequence.
+	
+Ranking on Weighted Graphs:
+	The decision on what edge to follow during random walk has higher likelilhood of following edge has larger weight.
+	
+Algorithm for Swquence Data Labeling:
+	The algorithm is seeking to identify a graph of label dependencies on which a random walk can be performed, resulting a set of scores can be used for label assignment.
+	The algorithm consists three steps:
+	1. costruction of label dependencies graph: 
+		creage a weighted graph by adding a vertex for each admissible label, an edge for each pair of labels with dependency
+	2. label scoring using graph-based ranking algorithms:
+		Using PageRank to assign scores of vertices
+	3. label assignment:
+		The most likely set of labels is determinde by identifying for each word the label that has highest score.
+
+Label Dependencies:
