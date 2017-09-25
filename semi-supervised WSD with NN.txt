@@ -1,5 +1,5 @@
 Summary:
-	- Recently using word vectors extracted from a NN language model as features in WSD, but average/concatenation of word vectors for word in text loses sequential and syntactic 		information of text.
+	- Recently using word vectors extracted from a NN language model as features in WSD, but average/concatenation of word vectors for word in text loses sequential and syntactic 	information of text.
 	
 	- This paper used LSTM(Long Short-Term Memory), which is a sequence learning neural net, on WSD. This better capture sequential and syntactic patterns of text.
 	- Employ LSTM on semi-supervised label propagation classifier
@@ -41,7 +41,7 @@ Label propagation algorithm:
 	The non-parametric nearest neighbor algorithm has two drawbacks:
 	1. It assumes a spherical shape for each sense cluster, unable to accurately model the boundaries given limited number of examples. 
 	2. It has no training data for the sense prior, which omitting a powerful signal.
-	To overcome these drawbacks, use semi-supervised method which augments the labeled example sentences with a large number unlabeled sentences.Se nse labels are then propagated from the labeled to the unlabeled sentences. Adding a large number of unlabeled sentences allows the decision boundary between different senses to be better approximated.
+	To overcome these drawbacks, use semi-supervised method which augments the labeled example sentences with a large number unlabeled sentences. These labels are then propagated from the labeled to the unlabeled sentences. Adding a large number of unlabeled sentences allows the decision boundary between different senses to be better approximated.
 	
 	A label-propagation graph consists of 
 		a. vertices with number of labeled seed nodes and 
