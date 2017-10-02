@@ -23,3 +23,8 @@ Semantic Role Labeling:
 	"John" as representing the recipient. 
 	
 This is an important step towards making sense of the meaning of a sentence. 
+
+Method for Semantic Role Labeling:
+	- Thematic roles
+	- PropBank 
+	- FrameNet
