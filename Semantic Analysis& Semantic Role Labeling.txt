@@ -1,0 +1,25 @@
+Semantic Analysis:
+	1. Process of relating syntactic structures from small levels like phrases, clauses, 
+	   sentences and paragraphs to level of writing as whole language-independent meanings.
+	   
+	2. Also involves removing particular linguistic and cultural contexts. 
+	   E.g idiom and figurative speech will convert to relative invariant meaning in semantic analysis.
+	   
+	Semantic Analysis Process:
+		1. Begin with the relationship between individual words. E.g. synonyms, antonyms...
+		2. Relates to concepts which is cobinationn of words frequently surrounding a single word. E.g idioms, metaphor..
+			Idioms Example:“ white as a ghost”
+
+
+Semantic Role Labeling:
+	Detection of semantic arguments associated with the predicate or verb of a sentence and their classification:
+	
+	What is Semantic Role? : Express the abstract role that arguments of a predicate can take in event.
+	For example, given a sentence like 
+	"Mary sold the book to John", the task would be to recognize:
+	"to sell" as representing the predicate, 
+	"Mary" as representing the seller (agent), 
+	"the book" as representing the goods (theme), 
+	"John" as representing the recipient. 
+	
+This is an important step towards making sense of the meaning of a sentence. 

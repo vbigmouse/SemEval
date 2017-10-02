@@ -32,16 +32,15 @@ Area in Semantic Analysis :
 			
 	2. Understand how different sentence and textual elements fit together.
 		The tasks in this area includes:
-			- Semantic role labeling, 
-			- Semantic relation analysis
+			- SEMANTIC ROLE LABELING
+			- SEMANTIC RELATION ANALYSIS
 			- Coreference resolution
 			
 Example of word sense induction and disambiguation task:
 	phase 1: Training 
 		- Use a training dataset to induce the sense inventories for a set of polysemous words
 	phase 2: Testing
-		- Provided a test set for the disambiguating subtask using the induced sense inventory from the training phase.
-	phase 3: Evaluation
+		- Provided a test set for the disambiguating subtask using the induced sense inventory from the training phase.	phase 3: Evaluation
 		- Evaluated in a supervised an unsupervised framework
 		
 Type of Semantic Annotations:
@@ -54,5 +53,3 @@ Type of Semantic Annotations:
 		6. Text Similarity
 		7. Time and Space
 		8. Word Sense Disambiguation and Induction
-
-
