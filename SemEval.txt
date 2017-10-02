@@ -5,6 +5,54 @@ SemEval: Semantic Evaluation
 	- Goal : Explore nature meaning in language.
 	
 History: 
-	Senseval-1~3: Word Sense Disambiguation
-	Senseval-2007~ : include semantic analysis tasks.
+	- Early to evaluation how good is algorithms for WSD.
+	- Senseval-1~3: Word Sense Disambiguation
+	- Senseval-2007~ : Include semantic analysis tasks.
+
+SemEval Workshop Framework:
+	1. Firstly, all participants were invited to express interest and participate in the exercise design.
+	2. Select evaluation materials.
+	3. Gold standards for the tasks were acquired, often human annotators were considered as a gold standard to measure precision and recall scores of computer systems. 
+	   These 'gold standards' are what the computational systems strive towards. 
+	   In WSD tasks, human annotators were set on the task of generating a set of correct WSD answers 
+	   (i.e. the correct sense for a given word in a given context)
+	4. The gold standard materials were released to participants, who then had a short time to run their programs over them and return their sets of answers to the organizers.
+	5. The organizers then scored the answers and the scores were announced and discussed at a workshop
+
+Area in Semantic Analysis : 
+	- The SemEval exercises provide a mechanism for examining issues in semantic analysis of texts. 
+	- The primary goal is to replicate human processing by means of computer systems.
+	The major area in Semantic Analysis:
+	1. Identification of meaning at word level: 
+		This is Word-Sense Disambiguation ( word have discrete senses, characterized by how their are used, e.g contexts).
+		The task in this area includes:
+			- Lexical sample and all-word disambiguation, 
+			- Multi- and cross-lingual disambiguation, and 
+			- Lexical substitution
+			
+	2. Understand how different sentence and textual elements fit together.
+		The tasks in this area includes:
+			- Semantic role labeling, 
+			- Semantic relation analysis
+			- Coreference resolution
+			
+Example of word sense induction and disambiguation task:
+	phase 1: Training 
+		- Use a training dataset to induce the sense inventories for a set of polysemous words
+	phase 2: Testing
+		- Provided a test set for the disambiguating subtask using the induced sense inventory from the training phase.
+	phase 3: Evaluation
+		- Evaluated in a supervised an unsupervised framework
+		
+Type of Semantic Annotations:
+	What the task hope to achieve:
+		1. Learning Semantic Relations
+		2. Question and Answering
+		3. Semantic Parsing
+		4. Semantic Taxonomy
+		5. Sentiment Analysis
+		6. Text Similarity
+		7. Time and Space
+		8. Word Sense Disambiguation and Induction
+
 
