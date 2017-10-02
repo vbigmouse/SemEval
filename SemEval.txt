@@ -1,0 +1,10 @@
+SemEval: Semantic Evaluation
+	- Definition: Series of Evaluations of computational semantic analysis systems.
+		I.E. Formal analysis of meaning by approaching in effective implementation.
+	- Source: Evolved from Senseval word sense evaluation series.
+	- Goal : Explore nature meaning in language.
+	
+History: 
+	Senseval-1~3: Word Sense Disambiguation
+	Senseval-2007~ : include semantic analysis tasks.
+
