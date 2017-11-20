@@ -1,0 +1,55 @@
+Sentence encoder model is trained on large corpus.
+Supervised tasks.
+Compare sentence embedding trained on various supervised tasks.
+Show embeddings generated from models trained on natural language interface(NLI) reach the best results. 
+
+In this paper, the experience used bi-directional LSTM arch encoder , trained on Standford Natural Language Interface.
+
+The SNLI corpus (version 1.0) is a collection of 570k human-written English sentence pairs manually labeled for balanced classification with the labels entailment, contradiction, and neutral, supporting the task of natural language inference (NLI), also known as recognizing textual entailment (RTE).
+
+EXAMPLE:
+
+Premise: A man inspects the uniform of a figure in some East Asian country.
+
+Hypothesis: The man is sleeping.
+
+Label: contradiction
+
+
+
+
+
+
+Has best result. better than all existing usupervised approaches like SkipThought or FastSent.
+
+This work combines two directions.
+1. explain how NLI task can be used to train universal sentence encoding model using SNLI task.
+2. The architecture investigated for sentence encoder.
+
+SNLI has 570K English sentence pairs. Labeled: entailment, contradiction and neutral. The semantic of NLI makes it good for learning sentence embeddings in SUPERVISED way.
+
+Model is trained on SNLI using: Separate encoding of INDIVIDUAL sentence.
+
+- Sentence Encoder architecture
+
+compared architecture in experiment:
+Recurrent Neural Network using LSTM / Gated Recurrent Units
+Bi-Direction LSTM Max/mean pooling network.
+Self-attentive network
+Hierarchical convolutional networks
+
+- Training Details:
+Using SGD with learning rate 0.1 and weight decay of 0.99 to train on SNLI. 
+
+- Evaluation:
+Binary and Multi-class classification
+Entailment and semantic relatedness
+Semantic Textual Similarity
+
+- Result 
+BiLSTM-max has best result
+
+Conclusion:
+- This paper studies the effects of training sentence embeddings with SUPERVISED data.
+-  Models trained on NLI better than unsupervised conditions or other supervised tasks. 
+- BiLSTM network with MAX pooling makes best universal sentence encoding method.
